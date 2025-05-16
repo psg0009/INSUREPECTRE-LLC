@@ -1,4 +1,744 @@
+make the index.html page with these things import :<head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>InsureSpectre - Smart Features</title>
+      <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      background-color: #2e0249;
+    }
+
+```
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.features-section,
+.services-section,
+.differentiator-section {
+  background: linear-gradient(to right, #2e0249);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.features-container, .differentiator-container, .services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.differentiator-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.feature-card, .diff-card, .service-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  max-width: 280px;
+  flex: 1 1 240px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #0f0f0f;
+  position: relative;
+}
+
+.feature-card:hover, .diff-card:hover, .service-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  color: #7a65ff;
+  margin-bottom: 20px;
+}
+
+.feature-card h3, .diff-card h3, .service-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feature-card p, .diff-card p, .service-card p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.modal-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.modal .icon {
+  font-size: 36px;
+}
+
+.modal h3 {
+  margin-top: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal p {
+  font-size: 17px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #000;
+}
+
+.close-btn:hover {
+  color: #a91079;
+}
+
+@media screen and (max-width: 768px) {
+  .differentiator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- Add this modal template into each .feature-card/.service-card/.diff-card where needed -->
+
+<script>
+  function openModal(icon, title, text, element) {
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.style.display = 'flex';
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close-btn';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = () => modalOverlay.remove();
+
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'icon';
+    iconDiv.innerText = icon;
+
+    const titleElem = document.createElement('h3');
+    titleElem.innerText = title;
+
+    const desc = document.createElement('p');
+    desc.innerText = text;
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(iconDiv);
+    modal.appendChild(titleElem);
+    modal.appendChild(desc);
+    modalOverlay.appendChild(modal);
+
+    if (element && element.appendChild) {
+      element.appendChild(modalOverlay);
+    }
+  }
+</script>
+
+  <!-- Smart Features Section -->
+
+  <section class="features-section">
+    <h2 class="section-title">Smart Features for Modern Students</h2>
+    <div class="features-container">
+      <div class="feature-card" onclick="openModal('⭐', 'Smart Recommendations', 'Our AI-powered system learns from your preferences and needs to provide tailored recommendations for services and resources.')">
+        <div class="icon">⭐</div>
+        <h3>Smart Recommendations</h3>
+        <p>Get personalized service suggestions based on your student profile and needs</p>
+      </div>
+      <div class="feature-card" onclick="openModal('⚡', 'Instant Support', '24/7 chat support for all your questions and concerns.')">
+        <div class="icon">⚡</div>
+        <h3>Instant Support</h3>
+        <p>24/7 chatbot support for all your questions and concerns</p>
+      </div>
+      <div class="feature-card" onclick="openModal('🧳', 'Break Travel Planner', 'Affordable, student-safe travel options during breaks—curated for international students.')">
+        <div class="icon">🧳</div>
+        <h3>Break Travel Planner</h3>
+        <p>Affordable, student-safe travel options during breaks—curated for international students</p>
+      </div>
+      <div class="feature-card" onclick="openModal('🧭', 'Onboarding Checklist', 'Step-by-step tasks to get settled as a student—covering housing, insurance, and more.')">
+        <div class="icon">🧭</div>
+        <h3>Onboarding Checklist</h3>
+        <p>Step-by-step tasks to get settled as a student—covering housing, insurance, and more</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InsureSpectre - Smart Features</title>
+      <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      background-color: #2e0249;
+    }
+
+```
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.features-section,
+.services-section,
+.differentiator-section {
+  background: linear-gradient(to right, #2e0249);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.features-container, .differentiator-container, .services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.differentiator-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.feature-card, .diff-card, .service-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  max-width: 280px;
+  flex: 1 1 240px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #0f0f0f;
+  position: relative;
+}
+
+.feature-card:hover, .diff-card:hover, .service-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  color: #7a65ff;
+  margin-bottom: 20px;
+}
+
+.feature-card h3, .diff-card h3, .service-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feature-card p, .diff-card p, .service-card p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.modal-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.modal .icon {
+  font-size: 36px;
+}
+
+.modal h3 {
+  margin-top: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal p {
+  font-size: 17px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #000;
+}
+
+.close-btn:hover {
+  color: #a91079;
+}
+
+@media screen and (max-width: 768px) {
+  .differentiator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- Add this modal template into each .feature-card/.service-card/.diff-card where needed -->
+
+<script>
+  function openModal(icon, title, text, element) {
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.style.display = 'flex';
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close-btn';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = () => modalOverlay.remove();
+
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'icon';
+    iconDiv.innerText = icon;
+
+    const titleElem = document.createElement('h3');
+    titleElem.innerText = title;
+
+    const desc = document.createElement('p');
+    desc.innerText = text;
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(iconDiv);
+    modal.appendChild(titleElem);
+    modal.appendChild(desc);
+    modalOverlay.appendChild(modal);
+
+    if (element && element.appendChild) {
+      element.appendChild(modalOverlay);
+    }
+  }
+</script>
+
+  <!-- Our Key Services Section -->
+
+  <section class="services-section">
+    <h2 class="section-title">Our Key Services</h2>
+    <p style="text-align:center; max-width: 700px; margin: 0 auto 40px; color:#ffffff; font-size: 17px;">
+      Explore our offerings in health, communication, and banking solutions tailored for your needs.
+    </p>
+    <div class="services-container">
+      <div class="service-card" onclick="openModal('🏦', 'Banking Solutions', 'Innovative banking services to meet your financial needs and simplify your life.')">
+        <h3>🏦 Banking Solutions</h3>
+        <p>Innovative banking services to meet your financial needs and simplify your life.</p>
+      </div>
+      <div class="service-card" onclick="openModal('🩺', 'Affordable Health Insurance', 'Comprehensive plans to protect your health without breaking the bank.')">
+        <h3>🩺 Affordable Health Insurance</h3>
+        <p>Comprehensive plans to protect your health without breaking the bank.</p>
+      </div>
+      <div class="service-card" onclick="openModal('📱', 'Student Phone Plans', 'Affordable connectivity options designed specifically for students to stay connected.')">
+        <h3>📱 Student Phone Plans</h3>
+        <p>Affordable connectivity options designed specifically for students to stay connected.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="icon" id="modalIcon">⭐</div>
+      <h3 id="modalTitle">Title</h3>
+      <p id="modalText">Description</p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(icon, title, text) {
+      document.getElementById('modalIcon').innerText = icon;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalText').innerText = text;
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InsureSpectre - Smart Features</title>
+      <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      background-color: #2e0249;
+    }
+
+```
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.features-section,
+.services-section,
+.differentiator-section {
+  background: linear-gradient(to right, #2e0249);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.features-container, .differentiator-container, .services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.differentiator-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.feature-card, .diff-card, .service-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  max-width: 280px;
+  flex: 1 1 240px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #0f0f0f;
+  position: relative;
+}
+
+.feature-card:hover, .diff-card:hover, .service-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  color: #7a65ff;
+  margin-bottom: 20px;
+}
+
+.feature-card h3, .diff-card h3, .service-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feature-card p, .diff-card p, .service-card p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.modal-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.modal .icon {
+  font-size: 36px;
+}
+
+.modal h3 {
+  margin-top: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal p {
+  font-size: 17px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #000;
+}
+
+.close-btn:hover {
+  color: #a91079;
+}
+
+@media screen and (max-width: 768px) {
+  .differentiator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- Add this modal template into each .feature-card/.service-card/.diff-card where needed -->
+
+<script>
+  function openModal(icon, title, text, element) {
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.style.display = 'flex';
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close-btn';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = () => modalOverlay.remove();
+
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'icon';
+    iconDiv.innerText = icon;
+
+    const titleElem = document.createElement('h3');
+    titleElem.innerText = title;
+
+    const desc = document.createElement('p');
+    desc.innerText = text;
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(iconDiv);
+    modal.appendChild(titleElem);
+    modal.appendChild(desc);
+    modalOverlay.appendChild(modal);
+
+    if (element && element.appendChild) {
+      element.appendChild(modalOverlay);
+    }
+  }
+</script>
+
+  <!-- Differentiator Section -->
+
+  <section class="differentiator-section">
+    <h2 class="section-title">What Makes InsureSpectre Different</h2>
+    <div class="differentiator-container">
+      <div class="diff-card" onclick="openModal('🎓', 'Built by Students, for Students', 'We understand your pain points — because we\'ve lived them. Our platform is built by college students who faced the same challenges and solved them with data-driven technology.')">
+        <h3>🎓 Built by Students, for Students</h3>
+        <p>We understand your pain points — because we have lived them.</p>
+      </div>
+      <div class="diff-card" onclick="openModal('💼', 'All-in-One, Truly Free', 'Insurance. Banking. SIM cards. Housing help. All in one place — and free for students. We partner with providers, so you don’t pay a dime for access.')">
+        <h3>💼 All-in-One, Truly Free</h3>
+        <p>All your essentials in one place — for free.</p>
+      </div>
+      <div class="diff-card" onclick="openModal('🧠', 'AI That Actually Gets You', 'Our smart system tailors every recommendation based on your university, visa type, travel plans, and more. No generic fluff — only what you actually need.')">
+        <h3>🧠 AI That Actually Gets You</h3>
+        <p>Tailored to your university, visa, and journey.</p>
+      </div>
+      <div class="diff-card" onclick="openModal('🧾', 'No More Information Overload', 'Forget 20 tabs and outdated blogs. InsureSpectre brings clarity with curated content, smart checklists, and verified tools in one dashboard.')">
+        <h3>🧾 No More Information Overload</h3>
+        <p>Clarity over chaos — everything organized.</p>
+      </div>
+      <div class="diff-card" onclick="openModal('🔒', 'Zero Hidden Costs, Ever', 'We’re not here to upsell. We simplify your journey and support you transparently. Students never pay.')">
+        <h3>🔒 Zero Hidden Costs, Ever</h3>
+        <p>Transparent. Student-first. Always.</p>
+      </div>
+      <div class="diff-card" onclick="openModal('🤝', 'Community-Centric Support', 'From peer mentorship to scam alerts — you're never alone. Join a student-driven community that helps each other thrive.')">
+        <h3>🤝 Community-Centric Support</h3>
+        <p>A community that has your back.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="icon" id="modalIcon">⭐</div>
+      <h3 id="modalTitle">Title</h3>
+      <p id="modalText">Description</p>
+    </div>
+  </div>
+
+  <script>
+    function openModal(icon, title, text) {
+      document.getElementById('modalIcon').innerText = icon;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalText').innerText = text;
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,102 +751,409 @@
       color: #ffffff;
       background-color: #2e0249;
     }
-    .section-title {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 40px;
-      color: #ffffff;
-      text-align: center;
-    }
-    section {
-      padding: 60px 20px;
-      position: relative;
-    }
-    .features-section, .services-section, .differentiator-section, .upcoming-section, .love-section {
-      background: linear-gradient(to right, #2e0249);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      text-align: center;
-      width: 100%;
-      box-sizing: border-box;
-      position: relative;
-    }
-    .features-container, .differentiator-container, .services-container, .upcoming-container, .love-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .differentiator-container, .upcoming-container, .love-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .feature-card, .diff-card, .service-card, .upcoming-card, .love-card {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
-      padding: 30px 20px;
-      transition: transform 0.2s ease;
-      cursor: pointer;
-      text-align: left;
-      color: #0f0f0f;
-      position: relative;
-    }
-    .feature-card:hover, .diff-card:hover, .service-card:hover, .upcoming-card:hover, .love-card:hover {
-      transform: translateY(-5px);
-    }
-    .icon {
-      font-size: 32px;
-      color: #7a65ff;
-      margin-bottom: 20px;
-    }
-    .feature-card h3, .diff-card h3, .service-card h3, .upcoming-card h3, .love-card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-    .feature-card p, .diff-card p, .service-card p, .upcoming-card p, .love-card p {
-      font-size: 16px;
-      color: #444;
-      line-height: 1.5;
-    }
-    @media screen and (max-width: 768px) {
-      .differentiator-container, .upcoming-container, .love-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .diff-card, .upcoming-card, .love-card {
-        width: 90%;
-        max-width: none;
-      }
-    }
+
+```
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.features-section,
+.services-section,
+.differentiator-section,
+.upcoming-section,
+.love-section {
+  background: linear-gradient(to right, #2e0249);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.features-container, .differentiator-container, .services-container, .upcoming-container, .love-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.differentiator-container, .upcoming-container, .love-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card, .diff-card, .service-card, .upcoming-card, .love-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #0f0f0f;
+  position: relative;
+}
+
+.feature-card:hover, .diff-card:hover, .service-card:hover, .upcoming-card:hover, .love-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  color: #7a65ff;
+  margin-bottom: 20px;
+}
+
+.feature-card h3, .diff-card h3, .service-card h3, .upcoming-card h3, .love-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feature-card p, .diff-card p, .service-card p, .upcoming-card p, .love-card p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.upcoming-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #7a65ff;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.upcoming-card a[target] {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .differentiator-container, .upcoming-container, .love-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-card, .upcoming-card, .love-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+```
+
   </style>
 </head>
 <body>
-  <section class="features-section">
-    <h2 class="section-title">Smart Features for Modern Students</h2>
-    <div class="features-container">
-      <div class="feature-card" onclick="openModal('⭐', 'Smart Recommendations', 'Our AI-powered system learns from your preferences and needs...')">
-        <div class="icon">⭐</div>
-        <h3>Smart Recommendations</h3>
-        <p>Get personalized service suggestions based on your student profile.</p>
-      </div>
-      <div class="feature-card" onclick="openModal('⚡', 'Instant Support', '24/7 chat support for all your questions.')">
-        <div class="icon">⚡</div>
-        <h3>Instant Support</h3>
-        <p>24/7 chatbot support for all your questions and concerns</p>
-      </div>
+
+<!-- Upcoming Section -->
+
+<section class="upcoming-section">
+  <h2 class="section-title">Coming Soon</h2>
+  <p style="text-align:center; max-width: 700px; margin: 0 auto 40px; color:#ffffff; font-size: 17px;">
+    Exciting new features on the horizon
+  </p>
+  <div class="upcoming-container">
+    <div class="upcoming-card">
+      <h4 style="color:#7a65ff">🚌 Running Now </h4>
+      <h3>Break Bus</h3>
+      <p>Affordable intercity bus options for summer break travel.</p>
+      <a href="https://www.insurespectre.com/break-bus" target="_blank">Book Now →</a>
     </div>
-  </section>
-  <script>
-    function openModal(icon, title, text) {
-      alert(`${icon} ${title}\n\n${text}`);
+    <div class="upcoming-card">
+      <h4 style="color:#7a65ff">📦 Coming April 2025</h4>
+      <h3>Storage Services</h3>
+      <p>Convenient and secure student storage solutions during transition months.</p>
+    </div>
+    <div class="upcoming-card">
+      <h4 style="color:#7a65ff">🚗 Coming May 2025</h4>
+      <h3>Car Pooling</h3>
+      <p>Community-driven ride sharing options to split costs and go green.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InsureSpectre - Smart Features</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      background-color: #2e0249;
     }
-  </script>
+
+```
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.features-section,
+.services-section,
+.differentiator-section,
+.upcoming-section,
+.love-section {
+  background: linear-gradient(to right, #2e0249;)
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.features-container, .differentiator-container, .services-container, .upcoming-container, .love-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.differentiator-container, .upcoming-container, .love-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card, .diff-card, .service-card, .upcoming-card, .love-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #0f0f0f;
+  position: relative;
+}
+
+.feature-card:hover, .diff-card:hover, .service-card:hover, .upcoming-card:hover, .love-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  color: #7a65ff;
+  margin-bottom: 20px;
+}
+
+.feature-card h3, .diff-card h3, .service-card h3, .upcoming-card h3, .love-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feature-card p, .diff-card p, .service-card p, .upcoming-card p, .love-card p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .differentiator-container, .upcoming-container, .love-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-card, .upcoming-card, .love-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- Why Students Love Us Section -->
+
+<section class="love-section">
+  <h2 class="section-title">Why Students Love Us</h2>
+  <div class="love-container">
+    <div class="love-card">
+      <h3>🎯 Personalized Help</h3>
+      <p>Every recommendation feels like it was made just for me. Super accurate!</p>
+    </div>
+    <div class="love-card">
+      <h3>🤝 Real Community</h3>
+      <p>I met my current roommate and carpool buddy here. It's more than just services.</p>
+    </div>
+    <div class="love-card">
+      <h3>💸 Actually Saved Me Money</h3>
+      <p>With the bundled banking and insurance, I saved over $300 last semester!</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InsureSpectre - Smart Features</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      background-color: #2e0249;
+    }
+
+```
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+}
+
+section {
+  padding: 60px 20px;
+  position: relative;
+}
+
+.features-section,
+.services-section,
+.differentiator-section,
+.upcoming-section,
+.love-section {
+  background: linear-gradient(to right, #2e0249;)
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.features-container, .differentiator-container, .services-container, .upcoming-container, .love-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.differentiator-container, .upcoming-container, .love-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card, .diff-card, .service-card, .upcoming-card, .love-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+  color: #0f0f0f;
+  position: relative;
+}
+
+.feature-card:hover, .diff-card:hover, .service-card:hover, .upcoming-card:hover, .love-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 32px;
+  color: #7a65ff;
+  margin-bottom: 20px;
+}
+
+.feature-card h3, .diff-card h3, .service-card h3, .upcoming-card h3, .love-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.feature-card p, .diff-card p, .service-card p, .upcoming-card p, .love-card p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .differentiator-container, .upcoming-container, .love-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .diff-card, .upcoming-card, .love-card {
+    width: 90%;
+    max-width: none;
+  }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<!-- Why Students Love Us Section -->
+
+<section class="love-section">
+  <h2 class="section-title">Why Students Love Us</h2>
+  <div class="love-container">
+    <div class="love-card">
+      <h3>🎯 Personalized Help</h3>
+      <p>Every recommendation feels like it was made just for me. Super accurate!</p>
+    </div>
+    <div class="love-card">
+      <h3>🤝 Real Community</h3>
+      <p>I met my current roommate and carpool buddy here. It's more than just services.</p>
+    </div>
+    <div class="love-card">
+      <h3>💸 Actually Saved Me Money</h3>
+      <p>With the bundled banking and insurance, I saved over $300 last semester!</p>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
