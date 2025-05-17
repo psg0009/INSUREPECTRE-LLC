@@ -1,11 +1,15 @@
 export default async function handler(req, res) {
+  // Only handle POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const { question } = req.body;
 
-  // Call your model's Hugging Face Inference API endpoint here
   const HF_API_URL = "https://api-inference.huggingface.co/models/psg009/finetuned-phi2-insureadvisor";
-  const HF_TOKEN = process.env.HF_TOKEN; // Set this in Vercel env vars
+  const HF_TOKEN = process.env.HF_TOKEN; // Set in Vercel env vars
 
-  const response = await fetch(HF_API_URL, {
+  const hfResponse = await fetch(HF_API_URL, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${HF_TOKEN}`,
@@ -13,6 +17,14 @@ export default async function handler(req, res) {
     },
     body: JSON.stringify({ inputs: `Question: ${question}\nAnswer:` })
   });
-  const data = await response.json();
-  res.status(200).json({ answer: data[0]?.generated_text || "" });
+
+  if (!hfResponse.ok) {
+    const error = await hfResponse.text();
+    return res.status(500).json({ error });
+  }
+
+  const data = await hfResponse.json();
+  const answer = data?.[0]?.generated_text?.split("Answer:")[1]?.trim() || "Sorry, no answer available.";
+
+  res.status(200).json({ answer });
 }
